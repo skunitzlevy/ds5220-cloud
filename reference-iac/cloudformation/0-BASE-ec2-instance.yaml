@@ -1,9 +1,3 @@
-# cloudformation template that creates an EC2 instance
-# with bootstrapping script, custom sized EBS volume,
-# creates an S3 bucket and an IAM policy and role for the
-# EC2 to access the bucket. Also creates a custom security
-# group for the EC2 instance that allows both ports 80 and 22.
-
 AWSTemplateFormatVersion: 2010-09-09
 Description: CloudFormation template that creates an EC2 instance with bootstrapping script, custom EBS volume, S3 bucket, and IAM role for bucket access
 

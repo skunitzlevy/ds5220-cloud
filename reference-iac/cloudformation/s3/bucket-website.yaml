@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template for a public S3 website bucket
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: The name of the S3 bucket
+    MinLength: 6
+    MaxLength: 24
+    AllowedPattern: '^[a-z0-9][a-z0-9\-]{1,61}[a-z0-9]$'
+    ConstraintDescription: must be a valid and globally unique bucket name
+
+Resources:
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      # Disable specific public access blocks required for public websites
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+  
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref BucketName
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicReadForWebsite
+            Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource: !Sub 'arn:aws:s3:::${BucketName}/*' # Grants public read access to all objects
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket
+    Value: !Ref BucketName
+  WebsiteURL:
+    Description: URL for the static website
+    Value: !GetAtt WebsiteBucket.WebsiteURL 
