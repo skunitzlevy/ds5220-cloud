@@ -132,3 +132,19 @@ aws lambda update-function-code \
   --function-name my-lambda-fn \
   --image-uri 440848399208.dkr.ecr.us-east-1.amazonaws.com/my-lambda-fn:latest
 ```
+
+## CloudFormation
+
+Assume you have a container image built and pushed to ECR, and that you know the IAM policy statements you would like for your BYOC Lambda function. You can create the policy, role, and Lambda function itself using CloudFormation.
+
+See `template.yaml` for sample code.
+
+To deploy this template from the CLI:
+```
+aws cloudformation deploy \
+  --template-file template.yaml \
+  --stack-name byoc-s3-list \
+  --capabilities CAPABILITY_NAMED_IAM                                                             
+```
+
+The `CAPABILITY_NAMED_IAM` flag is required because the template creates a named IAM role. 
