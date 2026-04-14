@@ -37,7 +37,7 @@ docker push 440848399208.dkr.ecr.us-east-1.amazonaws.com/my-lambda-fn:latest
 
 ## Trust
 
-Create a `trust-policy.json` file that allows Lambda to assume the role:
+Create a [`trust-policy.json`](trust-policy.json) file that allows Lambda to assume the role:
 ```json
 {
   "Version": "2012-10-17",
@@ -67,7 +67,7 @@ aws iam attach-role-policy \
 
 ## IAM Permissions
 
-Create a `lambda-s3-policy.json` file that grants S3 GetObject access to a specific bucket
+Create a [`lambda-s3-policy.json`](lambda-s3-policy.json) file that grants S3 GetObject access to a specific bucket
 and permission to list all buckets:
 ```json
 {
