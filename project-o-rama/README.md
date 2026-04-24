@@ -1,4 +1,4 @@
-# DS5220 — End of Term Projectorama
+# DS5220 — Project-O-Rama
 
 Choose **one** of the four projects below. Work in small groups (2–3 people) during class. The goal is to get something working end-to-end by the end of the session — polish and extensions are bonuses, not requirements.
 
@@ -67,6 +67,7 @@ flowchart LR
 - A minimal HTML form frontend (static site on S3) so users don't need curl
 - Click tracking: increment a counter in DynamoDB on each redirect
 - Custom alias support: let users specify their own short code
+- Custom domains can be mapped to the API Gateway service. This is exactly how `https://l.uvasds.sh/` is configured.
 
 ### Reference Code & Examples
 
